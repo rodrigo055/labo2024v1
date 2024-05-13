@@ -241,7 +241,7 @@ HT_tuning_baseline <- function( pmyexp, pinputexps, pserver="local")
 
     extra_trees = FALSE,
     # Quasi  baseline, el minimo learning_rate es 0.02 !!
-    learning_rate = c( 0.02, 0.5 ),
+    learning_rate = c( 0.01, 0.5 ),
     feature_fraction = c( 0.5, 0.9 ),
     num_leaves = c( 8L, 2048L,  "integer" ),
     min_data_in_leaf = c( 100L, 2000L, "integer" )
@@ -319,19 +319,22 @@ corrida_baseline_semillerio_202109 <- function( pnombrewf, pvirgen=FALSE )
 {
   if( -1 == exp_wf_init( pnombrewf, pvirgen) ) return(0) # linea fija
 
-  DT_incorporar_dataset_baseline( "DT0001-sem", "competencia_2024.csv.gz")
-  CA_catastrophe_baseline( "CA0001-sem", "DT0001-sem" )
-
-  DR_drifting_baseline( "DR0001-sem", "CA0001-sem" )
-  FE_historia_baseline( "FE0001-sem", "DR0001-sem" )
-
-  TS_strategy_baseline_202109( "TS0001-sem", "FE0001-sem" )
-
-  HT_tuning_baseline( "HT0001-sem", "TS0001-sem" )
+#  DT_incorporar_dataset_baseline( "DT0001-sem", "competencia_2024.csv.gz")
+#  CA_catastrophe_baseline( "CA0001-sem", "DT0001-sem" )
+#
+#  DR_drifting_baseline( "DR0001-sem", "CA0001-sem" )
+#  FE_historia_baseline( "FE0001-sem", "DR0001-sem" )
+#
+#  TS_strategy_baseline_202109( "TS0001-sem", "FE0001-sem" )
+#
+#  HT_tuning_baseline( "HT0001-sem", "TS0001-sem" )
 
   # El ZZ depente de HT y TS
+  ##
+  ## Atención, aquí cambiar por los nombres de su experimento
+  ## c("HT0001-sem","TS0001-sem")
+  ##
   ZZ_final_semillerio_baseline( "ZZ0001-sem", c("HT0001-sem","TS0001-sem") )
-
 
   exp_wf_end( pnombrewf, pvirgen ) # linea fija
 }
@@ -375,6 +378,6 @@ corrida_baseline_semillerio_202109( "basem01" )
 # Luego partiendo de  FE0001
 # genero TS0002, HT0002 y ZZ0002
 
-corrida_baseline_semillerio_202107( "basem02" )
+#corrida_baseline_semillerio_202107( "basem02" )
 
  
